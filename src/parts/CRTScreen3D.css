@@ -1,0 +1,95 @@
+.crt-monitor-casing {
+  position: relative;
+  background: linear-gradient(145deg, #3a3c36, #222420);
+  border: 12px solid #1a1b18;
+  border-radius: 28px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    inset 0 2px 5px rgba(255, 255, 255, 0.15),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.6);
+  padding: 24px 24px 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* 90s Authentic Square CRT 4:3 Aspect Ratio */
+.crt-monitor-casing.square {
+  width: 820px;
+  height: 640px;
+  max-width: 92vw;
+  max-height: 82vh;
+}
+
+/* Modern Full-screen Widescreen CRT */
+.crt-monitor-casing.wide {
+  width: 96%;
+  height: 90vh;
+}
+
+.crt-screen-bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px / 28px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 25px rgba(0, 0, 0, 0.9),
+    inset 0 0 60px rgba(0, 0, 0, 0.7);
+  background-color: #2b392b; /* Canonical dull green */
+}
+
+.crt-canvas-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.crt-glare-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 50%
+  );
+  border-radius: inherit;
+}
+
+.crt-content-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  text-shadow: 
+    0 0 8px rgba(255, 222, 0, 0.7),
+    0 0 20px rgba(255, 222, 0, 0.4);
+}
+
+.crt-monitor-badge {
+  margin-top: 12px;
+  color: #7a8274;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+}
