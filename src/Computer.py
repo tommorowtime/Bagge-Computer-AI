@@ -1,16 +1,7 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/hello-world")
-def hello_world():
-    return {"message": "Wassup, World!"} # JSON -> JavaScript Object Notation
+"""
+The Computer's thoughts and logic. Here is where functions for how the computer will behave
+will be stored and sent to the FASTAPI server.
+"""
+def process_feelings():
+    mood = "sad"
+    return mood

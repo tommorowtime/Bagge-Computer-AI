@@ -1,3 +1,6 @@
+`
+Main app container. Contains all parts of the app while having the least logic possible. Just frontend structuring.
+`
 import { useState } from 'react';
 import { CRTScreen3D } from './parts/CRTScreen3D';
 import { TerminalOverlay } from './parts/TerminalOverlay';

@@ -1,5 +1,7 @@
-`Here is the terminal screen. basically computer's face
-This is where everything shows and changes, computer outputs, courage/user inputs `
+`
+The computer's face. AKA the terminal screen.
+This is where everything shows and changes, computer outputs, courage/user inputs
+`
 
 // react imports
 import { useState, useEffect } from 'react';
@@ -23,10 +25,11 @@ function getNextFrameIndex(prevIndex: number): number {
 
 export function TerminalOverlay() {
   const [input, setInput] = useState('');
-  const [output, setOutput] = useState('System Online. Connecting to API...');
+  const [output, setOutput] = useState('System Online. Searching...');
   const [frameIndex, setFrameIndex] = useState(0);
   const [apiMessage, setApiMessage] = useState<string | null>(null);
 
+  // Courage animation change every 200ms
   useEffect(function setupFrameAnimation() {
     const timer = setInterval(function advanceAnimationFrame() {
       setFrameIndex(getNextFrameIndex);
@@ -38,22 +41,22 @@ export function TerminalOverlay() {
   }, []);
 
   function fetchApiData() {
-    return fetch('http://127.0.0.1:8000/hello-world')
-      .then(function parseResponse(res) {
-        return res.json();
+    return fetch('http://127.0.0.1:8000/brain')
+      .then(function parseResponse(response) {
+        return response.json();
       });
   }
 
   useEffect(function checkInitialApiConnection() {
     fetchApiData().then(
         function handleInitialSuccess(data) {
-          if (data.message) {
-          setApiMessage(data.message);
-          setOutput(`API Connected: "${data.message}" | What do you want, kid?`);
+          if (data) {
+          setApiMessage(data);
+          setOutput(`What do you want, kid?`);
           }
         }
       ).catch(function handleInitialError() {
-          setOutput('System Online (API Offline). Run TestAPI.py to connect backend!');
+          setOutput('Error... Nasty!');
         }
       )
   }, []
@@ -68,16 +71,16 @@ export function TerminalOverlay() {
       const trimmedInput = input.trim().toLowerCase();
       if (trimmedInput === 'api' || trimmedInput === 'hello') {
         if (apiMessage) {
-          setOutput(`[API Response]: ${apiMessage}`);
+          setOutput(`You want me to say ${apiMessage}? What a loser.`);
         } else {
-          setOutput('Attempting to contact API at http://127.0.0.1:8000/hello-world...');
+          setOutput('Searching... |http://127.0.0.1:8000/hello-world|');
           fetchApiData()
             .then(function handleManualFetchSuccess(data) {
               setApiMessage(data.message);
-              setOutput(`[API Response]: ${data.message}`);
+              setOutput(`You really want me to say ${apiMessage}? What a loser.`);
             })
             .catch(function handleManualFetchError() {
-              setOutput('[API Error]: Backend is offline. Run TestAPI.py first!');
+              setOutput("API? I Don't know you're on your own kid ;)");
             });
         }
       } else if (!input) {
@@ -85,7 +88,7 @@ export function TerminalOverlay() {
       } else {
         setOutput(`Processing your ridiculous query for: "${input}"...`);
         setTimeout(function delayedResponse() {
-          setOutput("I don't know. You're on your own, kid :)");
+          setOutput("I don't know. You're on your own, kid ;)");
         }, 1500);
       }
       setInput('');

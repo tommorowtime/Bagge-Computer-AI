@@ -1,3 +1,7 @@
+`
+The computer's body. It doesn't contain any functionality apart from size changes. 
+It's the 3d render of the screen that the TerminalOverlay lies on top of.
+`
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import type * as THREE from 'three';
