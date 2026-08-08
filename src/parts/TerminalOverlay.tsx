@@ -23,6 +23,10 @@ function getNextFrameIndex(prevIndex: number): number {
   return (prevIndex + 1) % courageFrames.length;
 }
 
+const apiUrl = import.meta.env.MODE === 'production'
+  ? 'https://bagge-computer-ai.vercel.app/api/brain'
+  : 'http://127.0.0.1:8000/brain';
+
 export function TerminalOverlay() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('System Online. Searching...');
@@ -41,7 +45,7 @@ export function TerminalOverlay() {
   }, []);
 
   function fetchApiData() {
-    return fetch('http://127.0.0.1:8000/brain')
+    return fetch(apiUrl)
       .then(function parseResponse(response) {
         return response.json();
       });
@@ -122,4 +126,3 @@ export function TerminalOverlay() {
     </div>
   );
 }
-
