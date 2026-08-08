@@ -23,9 +23,9 @@ function getNextFrameIndex(prevIndex: number): number {
   return (prevIndex + 1) % courageFrames.length;
 }
 
-const apiUrl = import.meta.env.MODE === 'production'
-  ? 'https://bagge-computer-ai.vercel.app/api/brain'
-  : 'http://127.0.0.1:8000/brain';
+const apiUrl = import.meta.env.VITE_API_URL 
+  || (import.meta.env.DEV ? 'http://127.0.0.1:8000/brain' : '/api/brain');
+
 
 export function TerminalOverlay() {
   const [input, setInput] = useState('');
@@ -80,8 +80,9 @@ export function TerminalOverlay() {
           setOutput('Searching... |http://127.0.0.1:8000/hello-world|');
           fetchApiData()
               .then(function handleManualFetchSuccess(data) {
-                setApiMessage(data.message);
-                setOutput(`You really want me to say ${apiMessage}? What a loser.`);
+                const messageText = typeof data === 'string' ? data : data?.message || data;
+                setApiMessage(messageText);
+                setOutput(`You really want me to say ${messageText}? What a loser.`);
               })
               .catch(function handleManualFetchError() {
                 setOutput("API? I Don't know you're on your own kid ;)");

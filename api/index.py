@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 #Logic imports
-from Computer import process_feelings
+from api.Computer import process_feelings
 
 
 #Decide who can access the API
