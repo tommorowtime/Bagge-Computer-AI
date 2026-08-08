@@ -75,14 +75,16 @@ export function TerminalOverlay() {
         } else {
           setOutput('Searching... |http://127.0.0.1:8000/hello-world|');
           fetchApiData()
-            .then(function handleManualFetchSuccess(data) {
-              setApiMessage(data.message);
-              setOutput(`You really want me to say ${apiMessage}? What a loser.`);
-            })
-            .catch(function handleManualFetchError() {
-              setOutput("API? I Don't know you're on your own kid ;)");
-            });
+              .then(function handleManualFetchSuccess(data) {
+                setApiMessage(data.message);
+                setOutput(`You really want me to say ${apiMessage}? What a loser.`);
+              })
+              .catch(function handleManualFetchError() {
+                setOutput("API? I Don't know you're on your own kid ;)");
+              });
         }
+      } else if (input === 'I hate you'){
+        setOutput('How dare you... loser')
       } else if (!input) {
         setOutput('Are you going to type something, you twit, or just stare at me?');
       } else {
