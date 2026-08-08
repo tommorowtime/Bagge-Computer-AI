@@ -1,5 +1,21 @@
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/src/ServerConnection.py" }
+  "builds": [
+    {
+      "src": "src/ServerConnection.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/ServerConnection.py"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
