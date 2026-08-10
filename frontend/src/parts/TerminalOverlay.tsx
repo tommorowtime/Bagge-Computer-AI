@@ -54,8 +54,8 @@ export function TerminalOverlay() {
   useEffect(function checkInitialApiConnection() {
     fetchApiData().then(
         function handleInitialSuccess(data) {
-          if (data) {
-          setApiMessage(data);
+          if (data.message) {
+          setApiMessage(data.message);
           setOutput(`What do you want, kid?`);
           }
         }
@@ -77,7 +77,7 @@ export function TerminalOverlay() {
         if (apiMessage) {
           setOutput(`You want me to say ${apiMessage}? What a loser.`);
         } else {
-          setOutput('Searching... |http://127.0.0.1:8000/hello-world|');
+          setOutput('Searching... |api/brain|');
           fetchApiData()
               .then(function handleManualFetchSuccess(data) {
                 const messageText = typeof data === 'string' ? data : data?.message || data;

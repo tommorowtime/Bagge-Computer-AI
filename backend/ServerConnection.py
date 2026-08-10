@@ -27,5 +27,7 @@ def think():
         response = "I'm Happy"
     elif process_feelings() == "sad":
         response = "I'm sad"
-    return response
+    else:
+        response = "I'm neutral"
+    return {"message": response}
 
