@@ -24,7 +24,7 @@ function getNextFrameIndex(prevIndex: number): number {
 }
 
 const apiUrl = import.meta.env.VITE_API_URL 
-  || (import.meta.env.DEV ? 'http://127.0.0.1:8000/brain' : '/api/brain');
+  || (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/brain' : '/api/brain');
 
 
 export function TerminalOverlay() {

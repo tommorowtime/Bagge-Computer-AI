@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 ################################################################################################################
-@app.get("/brain")
+@app.get("/api/brain")
 def think():
     response = ""
     if process_feelings() == "happy":
